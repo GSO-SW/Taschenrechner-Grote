@@ -22,7 +22,7 @@ namespace GitHub_Taschenrechner_Grote
             //Leerstellen entfernen
 
             string input = txtCalc.Text.Replace(" ","");
-            int result = 0;
+            double result = 0;
 
             try
             {
@@ -32,7 +32,7 @@ namespace GitHub_Taschenrechner_Grote
 
                 //input Konvertieren
 
-                int[] inputIntArr = inputStringArr.Select(x => Convert.ToInt32(x)).ToArray();
+                double[] inputIntArr = inputStringArr.Select(x => Convert.ToDouble(x)).ToArray();
 
                 //summieren
 
