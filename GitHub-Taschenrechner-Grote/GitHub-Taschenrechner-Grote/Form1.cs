@@ -26,29 +26,38 @@ namespace GitHub_Taschenrechner_Grote
 
             try
             {
-                //Input aufteilen 
+                //Input aufteilen zum Addieren
 
-                string[] inputStringArr = input.Split('+');
+                string[] inputStringAddArr = input.Split('+');
 
-                //input Konvertieren
+                //dieses array weiter aufteilen
 
-                double[] inputIntArr = inputStringArr.Select(x => Convert.ToDouble(x)).ToArray();
+                string[][] inputStringArr = inputStringAddArr.Select(x => x.Split('*')).ToArray();
 
-                //summieren
+                //Die einzelnen werte Konvertieren
 
-                result = inputIntArr.Sum();
+                double[][] doubleArrArr = inputStringArr.Select(x => x.Select(y => Convert.ToDouble(y)).ToArray()).ToArray();
+
+                //zuerst Multiplizieren
+
+                double[] doubleArr = doubleArrArr.Select(x=> 
+                {
+                    double a = 1;
+                    x.ToList().ForEach(y => a *= y);
+
+                    return a;
+                }).ToArray();
+
+                //dann Summieren;
+
+                result = doubleArr.Sum();
 
                 txtResult.Text = result.ToString();
             }
             catch
             {
                 MessageBox.Show("Falsche Eingabe!");
-            }
-            
-            
-            
-
-
+            }                                  
         }
     }
 }
